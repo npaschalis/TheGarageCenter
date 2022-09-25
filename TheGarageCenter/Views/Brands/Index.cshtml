@@ -1,0 +1,28 @@
+﻿@model TheGarageCenter.ViewModels.BrandViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="cards-group">
+        @foreach (var dealer in Model.Dealers)
+        {
+            <div class="card">
+                <div class="card-left">
+                    <div class="card-row"></div>
+                    <div class="card-row">
+                        <h3>@dealer.Name</h3>
+                    </div>
+                    <div class="card-row">@dealer.Address</div>
+
+                </div>
+                <div class="card-right">
+                    <p class="name">@Model.Brand.Name</p>
+                </div>
+            </div>
+        }
+    </div>
+    <p class="warning-message"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp; You have to login to be able to book a service</p>
+</div>
+
+

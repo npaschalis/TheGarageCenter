@@ -1,0 +1,692 @@
+﻿body {
+    padding-top: 100px;
+    background-color: #222;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.section-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    position: relative;
+    margin-bottom: 1.25em;
+}
+
+.section-title::before {
+    content: "";
+    background: #f37520;
+    display: inline-block;
+    width: 38px;
+    height: 5px;
+    margin-bottom: 8px;
+    margin-right: 10px;
+}
+
+.navbar {
+    padding: 1.5rem 0;
+    border: none;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-family: 'Oxanium', cursive;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.navbar-nav {
+    margin-left: 3rem;
+}
+
+.main-page-divs {
+    display: flex;
+    gap: 2rem;
+    margin: 5rem 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-left {
+    flex: 1;
+}
+
+.main-left h2 {
+    margin-top: 0;
+    font-size: 2.5em;
+    line-height: 1.3;
+}
+
+.main-left h2 span {
+    color: #f37520;
+}
+
+.main-left h6 {
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.1rem;
+    margin-bottom: 0.1rem;
+    font-weight: 400;
+}
+
+.main-left p {
+    line-height: 2;
+}
+
+.main-right {
+    flex: 1;
+    text-align: center;
+}
+
+.main-right img {
+    width: 300px;
+}
+
+.radioButtonLabel {
+    margin-right: 1em;
+    margin-left: 0.3em;
+}
+
+.our-history-section {
+    margin-top: 5rem;
+    padding: 5rem 0;
+    display: flex;
+    background: linear-gradient(to right, white 50%, #ececec 50%);
+    color: black;
+}
+
+.history-sections-columns {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.history-section-left {
+    flex: 1;
+}
+
+.history-section-left p {
+    line-height: 1.8;
+}
+
+.history-section-right {
+    flex: 1;
+    text-align: center;
+}
+
+.history-section-right img {
+    width: 90%;
+    border: 5px solid white;
+    margin-bottom: 2em;
+}
+
+.statistics {
+    display: flex;
+}
+
+.statistics-col {
+    flex: 1;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.statistics-col span {
+    display: block;
+}
+
+.statistics-col .title {
+    font-weight: 700;
+}
+
+.statistics-col .number {
+    color: #003f88;
+    font-size: 3em;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0;
+}
+
+.dealers-section {
+    padding: 5rem 0;
+}
+
+.dealers-section-columns {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+    
+.dealers-section-left {
+    flex: 1;
+}
+
+.dealers-section-left img {
+    margin: 2rem 0 5rem 0;
+    width: 100%;
+}
+
+.dealers-section-right {
+    flex: 1;
+}
+
+.dealers-section-right p {
+    line-height: 1.8;
+}
+
+.brands-section {
+    background-color: #fafafa;
+    color: black;
+    padding: 5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.brands-item {
+    flex: 1;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.brands-item img {
+    width: 100px;
+    opacity: 0.7;
+}
+
+.customers-section {
+    padding: 5rem 0;
+}
+
+.customers-section-columns {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.customers-section-right {
+    flex: 1;
+}
+
+.customers-section-right img {
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.customers-section-left {
+    flex: 1;
+}
+
+.customers-section-left p {
+    line-height: 1.8;
+}
+
+.contact-section {
+    padding: 5rem 0;
+    display: flex;
+    background: linear-gradient(to right, white 50%, #ececec 50%);
+    color: black;
+}
+
+.contact-columns {
+    display: flex;
+    gap: 8rem;
+}
+
+.contact-left {
+    flex: 1;
+}
+
+.contact-left p {
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.contact-left span {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.contact-left i {
+    color: #003F88;
+    margin-right: 0.5rem;
+}
+
+.contact-right {
+    flex: 1;
+}
+
+.socials-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    position: relative;
+    margin-bottom: 1.25em;
+}
+
+.socials-title::after {
+    content: "";
+    background: #003f88;
+    display: inline-block;
+    width: 38px;
+    height: 5px;
+    margin-bottom: 8px;
+    margin-left: 10px;
+}
+
+.social-icons-set {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.social-item {
+    width: 25%;
+    text-align: center;
+}
+
+.social-item i {
+    margin-top: 3rem;
+}
+
+.social-item p {
+    margin-top: 0.5rem;
+    font-size: 0.7em;
+    text-transform: uppercase;
+}
+
+footer {
+    padding: 5rem 0;
+}
+
+.footer-top {
+    display: flex;
+    gap: 5rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid gray;
+}
+
+.footer-top-column {
+    flex: 1;
+}
+.footer-top-column p {
+    color: gray;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-brand {
+    font-family: 'Oxanium', cursive;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.link-to-appointment:hover {
+    text-decoration: none;
+}
+
+.square-available {
+    color: #003f88;
+}
+
+.square-not-available {
+    color: #bebebe;
+}
+
+.dealer-address {
+    margin-bottom: 5rem;
+}
+
+.dealer-description {
+    margin-bottom: 8rem;
+}
+
+.dealer-home-page-main {
+    display: flex;
+    gap: 4rem;
+}
+
+.dealer-left-col {
+    flex: 1;
+}
+
+.dealer-right-col {
+    flex: 1;
+}
+
+.day-row {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.name-of-day {
+    width: 120px;
+}
+
+.appointments-list-selections {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thank-you-btn {
+    margin-top: 2rem;
+}
+
+.appointment-page-address {
+    margin-top: 0;
+    font-weight: 200;
+}
+
+.appointment-page-description {
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+/* TABLES */
+.table {
+    padding: 1rem 0;
+    margin: 2rem 0;
+    border-top: 2px solid #ececec;
+    border-bottom: 2px solid #ececec;
+}
+.table-header {
+    display: flex;
+    gap: 2rem;
+    font-weight: 700;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid #ececec;
+}
+
+.appointment-list-item {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.col-1 {
+    flex: 1;
+}
+
+.col-1 span {
+    display: block;
+}
+
+.col-2 {
+    flex: 2;
+}
+
+.col-3 {
+    flex: 3;
+}
+
+.col-centered {
+    display: flex;
+    justify-content: center;
+}
+
+.date-time-col {
+    text-align: center;
+}
+
+.deal {
+    margin-top: 3rem;
+    padding: 2rem 5rem;
+    background-color: #ececec;
+    color: black;
+    border-radius: 5px;
+}
+
+.deal h2 {
+    color: #f37520;
+    font-weight: 900;
+}
+
+.deal p {
+    font-weight: 600;
+}
+
+.deal button {
+   background-color: #003f88;
+   color: white;
+   font-weight: 500;
+   padding: 7px 15px;
+   border-radius: 5px;
+   margin-top: 1rem;
+   margin-bottom: 2rem;
+   border: none;
+   outline: none;
+}
+
+.deal button:hover {
+    background-color: #00296b;
+}
+
+.val-text-danger {
+    display: block;
+    margin-top: 0.5rem;
+    color: red;
+}
+
+/* CARDS */
+
+.cards-group {
+    margin-top: 3rem;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.cards-group-logged-in {
+    cursor: pointer;
+}
+
+.card {
+    display: flex;
+    width: 360px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-left {
+    background-color: #ececec;
+    color: black;
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.card-right {
+    background: white;
+    position: relative;
+    flex: 1;
+}
+
+.card-row {
+    flex: 1;
+}
+
+.card-right p {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    color: #003f88;
+    font-weight: 700;
+    writing-mode: vertical-lr;
+}
+
+.warning-message {
+    margin-top: 4rem;
+    padding: 2rem;
+    border-radius: 10px;
+    background: #f37520;
+}
+
+/*BUTTONS*/
+
+.btn-original {
+    padding: 7px 15px;
+    background-color: #003f88;
+    font-weight: 700;
+}
+
+.btn-original:hover {
+    background-color: #00296b;
+    color: white;
+}
+
+.btn-form {
+    background: #003f88;
+    color: white;
+    margin-top: 2rem;
+    padding: 10px 18px;
+    font-weight: 700;
+}
+
+.btn-form:hover {
+    background: #00296b;
+    color: white;
+    font-weight: 700;
+}
+
+.button-available {
+    background: #003f88;
+    color: white;
+    margin: 2rem 2rem 2rem 0;
+    padding: 1rem;
+}
+
+.button-available:hover {
+    background: #00296b;
+    color: white;
+}
+
+.button-not-available {
+    background: #bebebe;
+    color: white;
+    margin: 2rem 2rem 2rem 0;
+    padding: 1rem;
+}
+
+.button-not-available:hover {
+    background: #949494;
+    color: white;
+}
+
+.stripe-button-el {
+    background-color: #003f88 !important;
+    background-image: none !important;
+}
+
+.stripe-button-el span {
+    background-color: inherit !important;
+    background-image: none !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.stripe-button-el:hover {
+    background-color: #00296b !important;
+    background-image: none !important;
+}
+
+/*FORMS*/
+
+.form-h4 {
+    margin-top: 3rem;
+    color: #f37520;
+    font-weight: 300;
+}
+
+.hour-input {
+    width: 50px;
+    padding: 5px 12px;
+    color: black;
+    border-radius: 5px;
+    text-align: right;
+}
+
+.custom-select {
+    color: black;
+    padding: 5px 8px;
+}
+
+.custom-select select {
+    color: black;
+}
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 768px) {
+    .main-right {
+        display: none;
+    }
+
+    .our-history-section,
+    .contact-section {
+        background: white;
+        margin-right: 0 !important;
+    }
+
+    .history-sections-columns,
+    .dealers-section-columns,
+    .customers-section-columns,
+    .contact-columns,
+    .dealer-home-page-main {
+        flex-direction: column;
+    }
+
+    .footer-top {
+        display: none;
+    }
+
+    .brands-section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .brands-item img {
+        width: 50px;
+    }
+
+    .licence-plate-col {
+        display: none;
+    }
+
+    .card {
+        width: 320px;
+    }
+}

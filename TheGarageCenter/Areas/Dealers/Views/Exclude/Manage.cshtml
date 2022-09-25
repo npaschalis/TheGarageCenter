@@ -1,0 +1,146 @@
+﻿@model TheGarageCenter.Areas.Dealers.ViewModels.ExcludeViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+
+<h2 class="section-title">Availability.</h2>
+
+@using (Html.BeginForm("Index", "Dealer"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DateText)
+        @Html.TextBoxFor(m => m.DateText, new { autocomplete = "off", @class = "form-control date" })
+    </div>
+
+    <div class="manage-hours"></div>
+    <div class="colour-guide"></div>
+}
+
+@section scripts
+{
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script>
+        let model = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        $(document).ready(function () {
+            $(".date").datepicker({
+                dateFormat: "dd/mm/yy",
+                firstDay: 1,
+                minDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+                maxDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
+                beforeShowDay: isDateAvailable,
+                onSelect: function (dateText, instance) {
+                    let dateParts = dateText.split("/");
+                    let dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+                    let dayObject = dateObject.toLocaleString('en-us', { weekday: 'long' });
+
+                    $.ajax({
+                        url: "/Dealers/Exclude/GetHoursAction",
+                        type: "POST",
+                        data: { dateText: dateText },
+                        success: function (response) {
+                            $(".manage-hours").empty();
+                            let hoursArray = response.split(',');
+                            let start = parseInt(hoursArray[0]);
+                            let finish = parseInt(hoursArray[1]);
+                            hoursArray.splice(0, 2);
+                            console.log(hoursArray);
+                            for (let i = start; i <= finish; i++) {
+                                if (hoursArray.includes(i.toString())) {
+                                    $(".manage-hours").append(`<span class='btn button-available btn-sm js-toggle-available' data-hour=${i}>${i}:00 </span>`);
+                                } else {
+                                    $(".manage-hours").append(`<span class='btn button-not-available btn-sm js-toggle-available' data-hour=${i}>${i}:00 </span>`);
+                                }
+                            }
+                            $(".colour-guide").append(`
+                                <p><i class="fa-solid fa-square square-available"></i> &nbsp; Available</p>
+                                <p><i class="fa-solid fa-square square-not-available"></i> &nbsp; Not available</p>
+                            `);
+                        }
+                    });
+
+                    $(document).on('click', ".js-toggle-available", (function (e) {
+                        let button = $(e.target);
+                        $.post("/api/dealers/exclusion/", { hour: parseInt(button.attr("data-hour")), dateText: dateText })
+                            .done(function () {
+                                if (button.hasClass("button-available")) {
+                                    button
+                                        .removeClass("button-available")
+                                        .addClass("button-not-available");
+                                } else {
+                                    button
+                                        .removeClass("button-not-available")
+                                        .addClass("button-available");
+                                }
+                            })
+                            .fail(function (error) {
+                                console.log(error);
+                            });
+                    }));
+                }
+            });
+        });
+
+
+        function isDateAvailable(date) {
+            let day = date.getDay();
+            if (day === 1) {
+                if (!model.WeekSchedule.MondayTable)
+                    return [false, ""]
+                else
+                    return [true, ""]
+            };
+
+            if (day === 2) {
+                if (!model.WeekSchedule.TuesdayTable)
+                    return [false, ""]
+                else
+                    return [true, ""]
+            };
+
+            if (day === 3) {
+                if (!model.WeekSchedule.WednesdayTable)
+                    return [false, ""]
+                else
+                    return [true, ""]
+            };
+
+            if (day === 4) {
+                if (!model.WeekSchedule.ThursdayTable)
+                    return [false, ""]
+                else
+                    return [true, ""]
+            };
+
+            if (day === 5) {
+                if (!model.WeekSchedule.FridayTable)
+                    return [false, ""]
+                else
+                    return [true, ""]
+            };
+
+            if (day === 6) {
+                if (!model.WeekSchedule.SaturdayTable)
+                    return [false, ""]
+                else
+                    return [true, ""]
+            };
+
+            if (day === 0) {
+                if (!model.WeekSchedule.SundayTable)
+                    return [false, ""]
+                else
+                    return [true, ""]
+            };
+        };
+    </script>
+}
+
+
+

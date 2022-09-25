@@ -1,0 +1,178 @@
+﻿@model TheGarageCenter.Areas.Customers.ViewModels.AppointmentViewModel
+
+@{
+    ViewBag.Title = "Create Appointment";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+
+<div class="container">
+    <h2>@Model.DealerName</h2>
+    <p class="appointment-page-address">@Model.DealerAddress</p>
+    <p class="appointment-page-description">@Model.DealerDescription</p>
+
+    <h2 class="section-title">Create an appointment.</h2>
+
+    @using (Html.BeginForm("Create", "Appointments", new { area = "Customers" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.DealerId)
+        <div class="form-group">
+            @Html.LabelFor(m => m.LicencePlate)
+            @Html.TextBoxFor(m => m.LicencePlate, new { @class = "form-control licence-plate" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Date)
+            @Html.TextBoxFor(m => m.Date, new { autocomplete = "off", @class = "form-control date" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Time)
+            @Html.DropDownListFor(m => m.Time, Model.Hours, new { @class = "hours-list form-control" })
+        </div>
+        <button type="submit" class="btn btn-original btn-submit" disabled>Submit</button>
+    }
+</div>
+
+
+@section scripts
+{
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    
+
+    <script>
+        let filled = {
+            licencePlate: false,
+            time: false
+        };
+
+        let licencePlateInput = document.querySelector(".licence-plate");
+        let hoursList = document.querySelector(".hours-list");
+        let submitButton = document.querySelector(".btn-submit");
+
+        licencePlateInput.addEventListener('input', function (event) {
+            if (event.target.value !== '') {
+                filled.licencePlate = true;
+                if (filled.time === true) {
+                    submitButton.disabled = false;
+                }
+            } else {
+                filled.licencePlate === false;
+                submitButton.disabled = true;
+            };
+        });
+
+        hoursList.addEventListener('change', function (event) {
+            if (event.value !== '') {
+                filled.time = true;
+                if (filled.licencePlate === true) {
+                    submitButton.disabled = false;
+                }
+            } else {
+                filled.time === false;
+                submitButton.disabled = true;
+            }
+        });
+        
+        let model = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+
+        $(document).ready(function () {
+        $(".date").attr('readonly', 'readonly');
+        $(".date").datepicker({
+            dateFormat: "dd/mm/yy",
+            firstDay: 1,
+            beforeShowDay: isDateAvailable,
+            minDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+            maxDate: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000),
+            onSelect: function (dateText) {
+                $.ajax({
+                    url: '/Dealers/Exclude/GetHoursActionById',
+                    type: 'POST',
+                    data: { dealerId: model.DealerId, dateText: dateText },
+                    success: function (r) {
+                        let timeField = $('.hours-list');
+                        timeField.empty();
+                        timeField.append($('<option></option>').val('').text('Please select'));
+                        for (let i = 0; i < r.length; i++) {
+                            timeField.append($('<option></option>').val(r[i]).text(r[i]+":00"));
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+
+                $(document).on('click', ".js-toggle-available", (function (e) {
+                    $(".manage-hours .btn-primary").removeClass("btn-primary").addClass("btn-default");
+                    let button = $(e.target);
+                    button
+                        .removeClass("btn-default")
+                        .addClass("btn-primary");
+                    model.Time = parseInt(button.attr("data-hour"));
+                }));
+            }
+        });
+
+
+    });
+
+    function isDateAvailable(date) {
+        let day = date.getDay();
+        if (day === 1) {
+            if (!model.WeekSchedule.MondayTable)
+                return [false, ""]
+            else
+                return [true, ""]
+        };
+
+        if (day === 2) {
+            if (!model.WeekSchedule.TuesdayTable)
+                return [false, ""]
+            else
+                return [true, ""]
+        };
+
+        if (day === 3) {
+            if (!model.WeekSchedule.WednesdayTable)
+                return [false, ""]
+            else
+                return [true, ""]
+        };
+
+        if (day === 4) {
+            if (!model.WeekSchedule.ThursdayTable)
+                return [false, ""]
+            else
+                return [true, ""]
+        };
+
+        if (day === 5) {
+            if (!model.WeekSchedule.FridayTable)
+                return [false, ""]
+            else
+                return [true, ""]
+        };
+
+        if (day === 6) {
+            if (!model.WeekSchedule.SaturdayTable)
+                return [false, ""]
+            else
+                return [true, ""]
+        };
+
+        if (day === 0) {
+            if (!model.WeekSchedule.SundayTable)
+                return [false, ""]
+            else
+                return [true, ""]
+        };
+    };
+    </script>
+}
+
+
+

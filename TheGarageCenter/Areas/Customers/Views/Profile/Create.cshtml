@@ -1,0 +1,41 @@
+﻿@model TheGarageCenter.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+    <h2 class="section-title">Create Profile.</h2>
+
+    @using (Html.BeginForm("Create", "Profile", new { area = "Customers" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName)
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "val-text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "val-text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.PhoneNumber)
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "val-text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-original">Save</button>
+    }
+</div>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

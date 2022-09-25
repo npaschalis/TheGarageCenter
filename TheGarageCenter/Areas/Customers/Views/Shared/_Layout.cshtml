@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | The Garage Center</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("The Garage Center", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li><a href="@Url.Action("Index", "Home")#about-us">About</a></li>
+                    <li><a href="@Url.Action("Index", "Home")#contact-us">Contact</a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.Partial("_Notification")
+        @RenderBody()
+        <footer>
+            <div class="container">
+                <div class="footer-top">
+                    <div class="footer-top-column">
+                        <h5>Discover the Garage Center</h5>
+                        <p>The Garage Center provides car owners an easy-to-use website that compares all relevant options by the measure they choose, transparently and fairly. While also giving garages valid, legitimate bookings along with offering a range of marketing services to expand their online brand. </p>
+                    </div>
+                    <div class="footer-top-column">
+                        <h5>Make the Garage Center yours</h5>
+                        <p>Locate a dealer near you today to get a service appointment with expert Certified Service technicians who are ready to meet your vehicle's needs.</p>
+                    </div>
+                    <div class="footer-top-column">
+                        <h5>Expore the Garage Center</h5>
+                        <p>Select from a range of warrantly-approved auto services. Choose a service provider that's right for you. The marketplace where trust and automotive service connect!</p>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="footer-brand">The Garage Center</p>
+                    <p>&copy; @DateTime.Now.Year The Gear Patrol. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

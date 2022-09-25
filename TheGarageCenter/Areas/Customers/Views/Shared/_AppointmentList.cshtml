@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TheGarageCenter.Models.Appointment>
+
+@foreach (var appointment in Model)
+{
+    <div class="appointment-list-item">
+        <div class="date-time-col col-1">
+            <span>@appointment.Date.ToString("dd/MM/yyyy")</span>
+            <span>@appointment.Hour:00</span>
+        </div>
+        <div class="licence-plate-col col-1 col-centered">@appointment.LicencePlate</div>
+        <div class="col-2">@appointment.Dealer.Name </div>
+        <div class="col-2 col-centered" confirm-id="@appointment.Id">
+            @if (!appointment.IsCancelled)
+            {
+                if (appointment.IsConfirmed)
+                {
+                    <span class="text-success">CONFIRMED</span>
+                }
+
+                else
+                {
+                    <span class="text-default">NOT CONFIRMED</span>
+                }
+            }
+        </div>
+        <div class="col-1 col-centered" cancel-id="@appointment.Id">
+            @if (appointment.IsCancelled)
+            {
+                <span class="text-danger">CANCELLED</span>
+            }
+            else if (!appointment.IsCancelled && ViewBag.Past !="past")
+            {
+                <button data-appointment-id="@appointment.Id" onclick="return ValidateCancel(@appointment.Id)" class="btn btn-danger btn-sm">Cancel</button>
+            }
+        </div>
+    </div>
+}

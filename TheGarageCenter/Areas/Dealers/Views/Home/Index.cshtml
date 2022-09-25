@@ -1,0 +1,85 @@
+﻿@model TheGarageCenter.Areas.Dealers.ViewModels.ScheduleViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>@Model.Dealer.Name</h2>
+
+<p class="dealer-address">@Model.Dealer.Address</p>
+<div class="dealer-home-page-main">
+    <div class="dealer-right-col">
+        <h2 class="section-title">Schedule</h2>
+        <div class="day-row">
+            <div class="name-of-day">Monday</div>
+            <div class="hours-of day">
+                @(Model.MondayTable == null ? "Closed" : @Model.MondayTable.FirstAppointment + ":00 - " + @Model.MondayTable.LastAppointment + ":00")
+            </div>
+        </div>
+        <div class="day-row">
+            <div class="name-of-day">Tuesday</div>
+            <div class="hours-of day">
+                @(Model.TuesdayTable == null ? "Closed" : @Model.TuesdayTable.FirstAppointment + ":00 - " + @Model.TuesdayTable.LastAppointment + ":00")
+            </div>
+        </div>
+        <div class="day-row">
+            <div class="name-of-day">Wednesday</div>
+            <div class="hours-of day">
+                @(Model.WednesdayTable == null ? "Closed" : @Model.WednesdayTable.FirstAppointment + ":00 - " + @Model.WednesdayTable.LastAppointment + ":00")
+            </div>
+        </div>
+        <div class="day-row">
+            <div class="name-of-day">Thursday</div>
+            <div class="hours-of day">
+                @(Model.ThursdayTable == null ? "Closed" : @Model.ThursdayTable.FirstAppointment + ":00 - " + @Model.ThursdayTable.LastAppointment + ":00")
+            </div>
+        </div>
+        <div class="day-row">
+            <div class="name-of-day">Friday</div>
+            <div class="hours-of day">
+                @(Model.FridayTable == null ? "Closed" : @Model.FridayTable.FirstAppointment + ":00 - " + @Model.FridayTable.LastAppointment + ":00")
+            </div>
+        </div>
+        <div class="day-row">
+            <div class="name-of-day">Saturday</div>
+            <div class="hours-of day">
+                @(Model.SaturdayTable == null ? "Closed" : @Model.SaturdayTable.FirstAppointment + ":00 - " + @Model.SaturdayTable.LastAppointment + ":00")
+            </div>
+        </div>
+        <div class="day-row">
+            <div class="name-of-day">Sunday</div>
+            <div class="hours-of day">
+                @(Model.SundayTable == null ? "Closed" : @Model.SundayTable.FirstAppointment + ":00 - " + @Model.SundayTable.LastAppointment + ":00")</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="dealer-left-col">
+        <h2 class="section-title">Description</h2>
+        <p class="dealer-description">@Model.Dealer.Description</p>
+    </div>
+</div>
+
+@if (!Model.Dealer.isSubscribed)
+{
+    <div class="deal">
+        <form action="/Dealers/Home/Charge" method="POST">
+            <h2>Lifetime Subscription Deal!</h2>
+            <p>For just &euro;100 you make your company visible on our site. You only pay once and use our services forever!</p>
+            <script src="//checkout.stripe.com/v2/checkout.js"
+                    class="stripe-button"
+                    data-key=@ViewBag.StripePublishKey
+                    data-locale="auto"
+                    data-description="The Garage Center"
+                    data-currency="eur"
+                    data-amount="10000">
+            </script>
+        </form>
+    </div>
+}
+
+
+
+
+
+

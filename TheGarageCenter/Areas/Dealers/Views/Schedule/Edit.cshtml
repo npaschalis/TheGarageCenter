@@ -1,0 +1,187 @@
+﻿@model TheGarageCenter.Areas.Dealers.ViewModels.ScheduleViewModel
+
+@{
+    ViewBag.Title = "Edit Schedule";
+}
+
+<h2 class="section-title">Edit Schedule.</h2>
+
+
+@using (Html.BeginForm("Edit", "Schedule"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <h4 class="form-h4">Monday</h4>
+            </div>
+            <div class="col-xs-4">
+                <label>First Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.MondayTable.FirstAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.MondayTable.FirstAppointment, "", new { @class = "val-text-danger" })
+            </div>
+            <div class="col-xs-4">
+                <label>Last Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.MondayTable.LastAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.MondayTable.LastAppointment, "", new { @class = "val-text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <h4 class="form-h4">Tuesday</h4>
+            </div>
+            <div class="col-xs-4">
+                <label>First Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.TuesdayTable.FirstAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.TuesdayTable.FirstAppointment, "", new { @class = "val-text-danger" })
+            </div>
+            <div class="col-xs-4">
+                <label>Last Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.TuesdayTable.LastAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.TuesdayTable.LastAppointment, "", new { @class = "val-text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <h4 class="form-h4">Wednesday</h4>
+            </div>
+            <div class="col-xs-4">
+                <label>First Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.WednesdayTable.FirstAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.WednesdayTable.FirstAppointment, "", new { @class = "val-text-danger" })
+            </div>
+            <div class="col-xs-4">
+                <label>Last Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.WednesdayTable.LastAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.WednesdayTable.LastAppointment, "", new { @class = "val-text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <h4 class="form-h4">Thursday</h4>
+            </div>
+            <div class="col-xs-4">
+                <label>First Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.ThursdayTable.FirstAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.ThursdayTable.FirstAppointment, "", new { @class = "val-text-danger" })
+            </div>
+            <div class="col-xs-4">
+                <label>Last Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.ThursdayTable.LastAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.ThursdayTable.LastAppointment, "", new { @class = "val-text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <h4 class="form-h4">Friday</h4>
+            </div>
+            <div class="col-xs-4">
+                <label>First Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.FridayTable.FirstAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.FridayTable.FirstAppointment, "", new { @class = "val-text-danger" })
+            </div>
+            <div class="col-xs-4">
+                <label>Last Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.FridayTable.LastAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.FridayTable.LastAppointment, "", new { @class = "val-text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <h4 class="form-h4">Saturday</h4>
+            </div>
+            <div class="col-xs-4">
+                <label>First Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.SaturdayTable.FirstAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.SaturdayTable.FirstAppointment, "", new { @class = "val-text-danger" })
+            </div>
+            <div class="col-xs-4">
+                <label>Last Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.SaturdayTable.LastAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.SaturdayTable.LastAppointment, "", new { @class = "val-text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <div class="col-xs-12">
+                <h4 class="form-h4">Sunday</h4>
+            </div>
+            <div class="col-xs-4">
+                <label>First Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.SundayTable.FirstAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.SundayTable.FirstAppointment, "", new { @class = "val-text-danger" })
+            </div>
+            <div class="col-xs-4">
+                <label>Last Appointment</label>
+                <div>
+                    @Html.TextBoxFor(m => m.SundayTable.LastAppointment, new { @class = "hour-input" })
+                    <span>:00</span>
+                </div>
+                @Html.ValidationMessageFor(m => m.SundayTable.LastAppointment, "", new { @class = "val-text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-form">Save</button>
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

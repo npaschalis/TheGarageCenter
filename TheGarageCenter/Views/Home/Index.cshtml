@@ -1,0 +1,148 @@
+﻿@model TheGarageCenter.ViewModels.HomeFormViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="container">
+    <div class="main-page-divs">
+        <div class="main-left">
+            <h6>Passion in every work</h6>
+            <h2>Book auto repair with <span>trusted</span> providers near you</h2>
+
+            <p>Select from a range of warrantly-approved auto services. Choose a service provider that's right for you. The marketplace where trust and automotive service connect!</p>
+            @using (Html.BeginForm("Index", "Home"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Brand)
+                    @Html.DropDownListFor(m => m.Brand, new SelectList(Model.Brands, "Id", "Name"), "", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Brand, "", new { @class = "val-text-danger" })
+                </div>
+
+                <button type="submit" class="btn btn-original">Submit</button>
+            }
+        </div>
+        <div class="main-right">
+            <img src="~/Content/images/hero.png" alt="illustration with a mechanic" />
+        </div>
+    </div>
+</div>
+
+<section class="our-history-section" id="about-us">
+    <div class="container">
+        <div class="history-sections-columns">
+            <div class="history-section-left">
+                <h2 class="section-title">About Us</h2>
+                <p>The Garage Center provides car owners an easy-to-use website that compares all relevant options by the measure they choose, transparently and fairly. While also giving garages valid, legitimate bookings along with offering a range of marketing services to expand their online brand.</p>
+                <p>Our vision is to become the leading car servicing site, serving the needs of drivers and garages alike.</p>
+            </div>
+            <div class="history-section-right">
+                <img src="~/Content/images/homepage-img.jpg" alt="Mechanic with a customer" />
+                <div class="statistics">
+                    <div class="statistics-col">
+                        <span class="number">@Model.NumberOfDealers</span>
+                        <span class="title">Dealers</span>
+                    </div>
+                    <div class="statistics-col">
+                        <span class="number">@Model.NumberOfCustomers</span>
+                        <span class="title">Customers</span>
+                    </div>
+                    <div class="statistics-col">
+                        <span class="number">@Model.NumberOfAppointments</span>
+                        <span class="title">Appointments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dealers-section">
+    <div class="container">
+        <h2 class="section-title">The dealers</h2>
+        <div class="dealers-section-columns">
+            <div class="dealers-section-left">
+                <img src="~/Content/images/dealers.jpg" alt="Garage" />
+            </div>
+            <div class="dealers-section-right">
+                <p>Locate a dealer near you today to get a service appointment with expert Certified Service technicians who are ready to meet your vehicle's needs.</p>
+                <p>There are so many dealerships in Greece right now with a service department where you can have a service and maintenance work carried out on your car. Get in touch with your nearest dealer today. Simply enter your car brand to get started!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="brands-section">
+    <div class="brands-item">
+        <img src="~/Content/images/bmw.png" alt="bmw logo" />
+    </div>
+    <div class="brands-item">
+        <img src="~/Content/images/opel.png" alt="opel logo" />
+    </div>
+    <div class="brands-item">
+        <img src="~/Content/images/skoda.png" alt="skoda logo" />
+    </div>
+    <div class="brands-item">
+        <img src="~/Content/images/volvo.png" alt="volvo logo" />
+    </div>
+    <div class="brands-item">
+        <p>+ many more!</p>
+    </div>
+</section>
+
+<section class="customers-section">
+    <div class="container">
+        <div class="customers-section-columns">
+            <div class="customers-section-left">
+                <h2 class="section-title">The customers</h2>
+                <p>Excellent customer service is not just about words. We strive to earn the trust of our customers because their satisfaction is our success.</p>
+                <p>Create an account today and book high quality auto services with a provider near you.</p>
+            </div>
+            <div class="customers-section-right">
+                <img src="~/Content/images/customers.jpg" alt="Garage" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact-us">
+    <div class="container">
+        <div class="contact-columns">
+            <div class="contact-left">
+                <h2 class="section-title">Contact Us</h2>
+                <p>Mail us and our team will get back to you within 24 hours.</p>
+                <span><i class="fa-solid fa-envelope"></i> info@thegaragecenter.com</span>
+                <span><i class="fa-solid fa-phone"></i> 210 2022223</span>
+            </div>
+            <div class="contact-right">
+                <div class="socials">
+                    <h2 class="socials-title">Socials</h2>
+                    <div class="social-icons-set">
+                        <div class="social-item">
+                            <i class="fa-brands fa-facebook fa-2xl"></i>
+                            <p>facebook</p>
+                        </div>
+                        <div class="social-item">
+                            <i class="fa-brands fa-twitter fa-2xl"></i>
+                            <p>twitter</p>
+                        </div>
+                        <div class="social-item">
+                            <i class="fa-brands fa-instagram fa-2xl"></i>
+                            <p>instagram</p>
+                        </div>
+                        <div class="social-item">
+                            <i class="fa-brands fa-youtube fa-2xl"></i>
+                            <p>youtube</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,129 @@
+﻿@model IEnumerable<TheGarageCenter.Models.Appointment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2 class="section-title">My Appointments.</h2>
+    <div class="appointments-list-selections">
+        <div>
+            <input type="checkbox" id="includeCancelled" name="includeCancelled" class="includeCancelledCheckBox" value="includeCancelled" checked />
+            <label for="includeCancelled">Include cancelled</label>
+        </div>
+        <select name="datesSelector" id="datesSelector" class="select-dates custom-select">
+            <option selected value="future">Upcoming dates</option>
+            <option value="past">Past dates</option>
+        </select>
+    </div>
+    <div class="table">
+        <div class="table-header">
+            <div class="date-time-col col-1">Date/Time</div>
+            <div class="licence-plate-col col-1 col-centered">Licence Plate</div>
+            <div class="col-2">Dealer</div>
+            <div class="col-2 col-centered">Confirmed</div>
+            <div class="col-1"></div>
+        </div>
+        <div id="appointmentsList"></div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        let selections = {
+            includeCancelled: true,
+            showFuture: true
+        }
+
+        $(() => {
+            getAppointments(selections);
+
+            $(".includeCancelledCheckBox").on("change", function () {
+                if ($('#includeCancelled').is(':checked')) {
+                    selections.includeCancelled = true;
+                } else {
+                    selections.includeCancelled = false;
+                }
+
+                getAppointments(selections);
+            });
+
+            $(".select-dates").on("change", function () {
+                if ($(".select-dates").find(":selected").val() === 'past') {
+                    selections.showFuture = false;
+                } else {
+                    selections.showFuture = true;
+                }
+
+                getAppointments(selections);
+            })
+        });
+
+        function getAppointments(selections) {
+            $.ajax({
+                url: '@Url.Action("AppointmentList","Appointments")',
+                datatype: 'html',
+                method: 'GET',
+                data: {
+                    includeCancelled: selections.includeCancelled,
+                    showFuture: selections.showFuture
+                },
+                success: function (res) {
+                    $('#appointmentsList').html('').html(res);
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+        }
+
+
+        function ValidateCancel(id) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, cancel it!',
+                cancelButtonText: 'No.',
+                reverseButtons: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post(`/api/customers/cancelAppointment/${id}`)
+                        .done(function () {
+                            swalWithBootstrapButtons.fire(
+                                'Cancelled!',
+                                'The appointment has been cancelled.',
+                                'success'
+                            )
+
+                            $('div').find(`[confirm-id='${id}']`).empty();
+                            $('div').find(`[cancel-id='${id}']`).html('<span class="text-danger">CANCELLED</span>');
+                        })
+                        .fail(function () {
+                            alert("Something failed!")
+                        });
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                }
+            })
+        }
+
+    </script>
+}
+
+
+
+
